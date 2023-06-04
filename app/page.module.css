@@ -227,3 +227,85 @@
     transform: rotate(0deg);
   }
 }
+/* Tablet and Smaller Desktop */
+
+ /* h1, h2, p, body, input{
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    font-family: system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+} */
+.frame{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%,
+     rgba(152,26,185,1) 36%, rgba(0,212,255,1) 100%);
+}
+.frame_reg{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(12, 122, 122);
+    clip-path: polygon(10.0% 0.0%, 90.0% 0%, 100% 10%,
+    100% 90.0%, 90% 100%,
+    10.0% 100%, 0.0% 90.0%, 0% 10.0%);
+    max-width: 400px;
+    width: 100%;
+    height: 400px;
+    flex: 500px;
+}
+.forma_text{
+    margin-top: 22%;
+    margin-bottom: 4%;
+    font-size: 37px;
+    color: rgb(89, 167, 17);
+    text-align: center;
+}
+.reg{
+    border: none;
+    border-radius: 50px;
+    height: 35px;
+    width: 20vh;
+    background-color: rgba(9, 13, 209, 0.815);
+}
+.reg:active{
+    border: none;
+    border-radius: 50px;
+    margin-top: 1px;
+    height: 33px;
+    width: 18vh;
+    background-color: rgba(9, 12, 209, 0.37);
+}
+.email{
+    text-align: center;
+}
+.password{
+    text-align: center;
+}
+.pole{
+    width: 100%;
+    max-width: 320px;
+    min-width: 180px;
+    border-radius: 50px;
+    height: 35px;
+    padding-left: 35px;
+    box-sizing: border-box;
+    color: #1467e4;
+    background-color: rgb(89, 167, 17);
+    margin-bottom: 10px;
+}
+.pole::placeholder {
+    color: #1467e4;
+}
+.pole:focus{
+    outline: none;
+}
+.reg_btn{
+    min-width: 40%;
+    text-align: center;
+    margin-top: 35px;
+}
