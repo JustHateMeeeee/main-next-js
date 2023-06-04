@@ -20,18 +20,6 @@ export default function () {
                         <ul class="comment_field">
                             <li>
                                 <div class="Commentari">
-                                    <div class="Pre_com">
-                                        <div class="User">
-                                            <p class="name">Иван Пупкин</p>
-                                        </div>
-                                        <div class="User">
-                                            <p class="time"><time>32:23</time></p>
-                                        </div>
-                                        <div class="User">
-                                            <p class="date"><time>11.12.2012</time></p>
-                                        </div>
-                                    </div>
-    
                                     <div class="sam_com">
                                         <p>Lorem ipsum dolor sit, amet consectetur 
                                         adipisicing elit. Explicabo expedita, at
@@ -45,18 +33,6 @@ export default function () {
                             </li>
                             <li>
                                 <div class="Commentari">
-                                    <div class="Pre_com">
-                                        <div class="User">
-                                            <p class="name">Иван Пупкин</p>
-                                        </div>
-                                        <div class="User">
-                                            <p class="time"><time>32:23</time></p>
-                                        </div>
-                                        <div class="User">
-                                            <p class="date"><time>11.12.2012</time></p>
-                                        </div>
-                                    </div>
-    
                                     <div class="sam_com">
                                         <p>Lorem ipsum dolor sit, amet consectetur 
                                         adipisicing elit. Explicabo expedita, at
