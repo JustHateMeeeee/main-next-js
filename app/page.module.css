@@ -309,3 +309,123 @@
     text-align: center;
     margin-top: 35px;
 }
+/* Страница номер 2 */
+.body{
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%,
+  rgba(152,26,185,1) 36%, rgba(0,212,255,1) 100%);
+}
+.Frame{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.Comment_frame{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.comment_form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  max-width: 650px;
+
+  margin: 50px 20px 0px 20px;
+}
+
+#coment{
+  resize: none;
+
+  background:  0px, 0px, no-repeat;
+  background-size: 100% 100%;
+
+  outline: none;
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+  height: 100%;
+  height: 300px;
+  box-sizing: border-box;
+  color: brown;
+  font-size: 20px;
+  caret-color: rgb(91, 12, 219);
+
+}
+
+.otprav{
+  margin-top: 8px;
+  margin-right: 25px;
+  float: right;
+}
+.otprav_btn{
+  text-align: center;
+  border-radius: 30px;
+  border: solid 0px;
+  outline: 0px;
+  width: 140px;
+  height: 30px;
+  background-color: rgb(21, 172, 172);
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+  box-sizing: border-box;
+}
+.otprav_btn:active{
+  text-align: center;
+  border-radius: 30px;
+  border: solid 0px;
+  outline: 0px;
+  width: 140px;
+  height: 30px;
+  background-color: rgb(12, 110, 110);
+  box-shadow: maroon;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Стили для коментария */
+
+.comment_pole{
+  display: flex;
+  background-color: rgb(179, 165, 165);
+  border-radius: 15PX;
+  margin: 20px 0px 0px 0px;
+  box-sizing: border-box;
+  width: 80%;
+  height: auto;
+  padding: 5px 10px 5px 10px;
+}
+
+.Commentari{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  background-color: rgb(11, 133, 102);
+  border-radius: 15px;
+  margin-bottom: 15px;
+} 
+
+.Pre_com{
+  margin-right: 5px;
+  margin-left: 15px;
+  width: 100%;
+  max-width: 130px;
+  min-width: 110px;
+}
+
+.sam_com{
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px;
+}
+
+.comment_field{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+}
