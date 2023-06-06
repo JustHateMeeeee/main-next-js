@@ -37,7 +37,7 @@ const Contacts = () => {
                             <li key={id}>
                                 <div className={styles.Commentari}>
                                     <div className={styles.sam_com}>
-                                    {username}({email})
+                                    {title}({text})
                                     </div>
                                     <button className={styles.close_btn} type="submit" name="close_btn">
                                         <svg  width="26px" height="26px" viewBox="-3.2 -3.2 38.40 38.40" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)">
