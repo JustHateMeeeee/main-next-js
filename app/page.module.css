@@ -229,14 +229,6 @@
 }
 /* Tablet and Smaller Desktop */
 
- /* h1, h2, p, body, input{
-    margin: 0px;
-    padding: 0px;
-    border: none;
-    font-family: system-ui, -apple-system,
-    BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
-} */
 .frame{
     display: flex;
     align-items: center;
@@ -310,7 +302,8 @@
     margin-top: 35px;
 }
 /* Страница номер 2 */
-.body{
+ .body{
+  height: 100%;
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%,
   rgba(152,26,185,1) 36%, rgba(0,212,255,1) 100%);
 }
@@ -327,6 +320,7 @@
 }
 
 .comment_form{
+  color: antiquewhite;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -336,8 +330,7 @@
 
   margin: 50px 20px 0px 20px;
 }
-
-#coment{
+.coment{
   resize: none;
 
   background:  0px, 0px, no-repeat;
@@ -350,9 +343,8 @@
   height: 100%;
   height: 300px;
   box-sizing: border-box;
-  color: brown;
+  color: white;
   font-size: 20px;
-  caret-color: rgb(91, 12, 219);
 
 }
 
@@ -371,7 +363,7 @@
   background-color: rgb(21, 172, 172);
   cursor: pointer;
   font-size: 14px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
   box-sizing: border-box;
 }
 .otprav_btn:active{
@@ -387,13 +379,13 @@
   font-size: 14px;
 }
 
-/* Стили для коментария */
+
 
 .comment_pole{
-  display: flex;
   background-color: rgb(179, 165, 165);
   border-radius: 15PX;
   margin: 20px 0px 0px 0px;
+  margin-bottom: 10px;
   box-sizing: border-box;
   width: 80%;
   height: auto;
@@ -428,4 +420,10 @@
   flex-wrap: wrap;
   flex-direction: column;
 
+}
+.close_btn{
+  margin: 0px;
+  padding: 0px;
+  background: none;
+  border: none;
 }
