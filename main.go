@@ -63,6 +63,7 @@ func updateNote(context *gin.Context) {
 		context.JSON(http.StatusInternalServerError, nil)
 		return
 	}
+	
 	err = Update(note)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, nil)
@@ -96,7 +97,7 @@ func getAllNotes(context *gin.Context) {
 	data, err := GetNotes()
 
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, nil)
+		fmt.Println(err.Error())
 		return
 	}
 

@@ -26,7 +26,7 @@ import (
 
 		err = conn.Ping(context.Background())
 		if err != nil{
-			panic(err.Error())
+			fmt.Println(err.Error())
 		}
 
 		return nil
@@ -51,10 +51,15 @@ import (
 
 
 	func GetNotes()([]NotesType, error){
+		fmt.Println(1)
+
 		row, e := conn.Query(context.Background(), `SELECT * FROM notes`)
+
+
 		if e != nil{
-			panic(e.Error())
-			// return nil, e
+
+			fmt.Println(e.Error())
+			return nil, e
 		} 
 		defer row.Close()
 
@@ -62,7 +67,7 @@ import (
 		var notesArr = make([]NotesType, 0)
 		
 		for row.Next(){
-			e = row.Scan(&note.Title, &note.Text, &note.Author)
+			e = row.Scan(&note.Id,&note.Title, &note.Text, &note.Author, )
 			if e != nil {
 				return nil, e
 			}

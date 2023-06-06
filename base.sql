@@ -22,8 +22,7 @@ CREATE TABLE public.notes (
 	id serial4 NOT NULL,
 	title varchar(30) NULL,
 	"text" varchar(300) NULL,
-	category varchar(30) NULL,
 	"time" date NULL,
-	author varbit(30) NULL,
+	author text NULL,
 	CONSTRAINT notes_pkey PRIMARY KEY (id)
 );
