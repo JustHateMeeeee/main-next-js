@@ -33,7 +33,7 @@ import (
 	}
 
 	func Create(notes *NotesType) error{
-		_, e := conn.Exec(context.Background(),`INSERT INTO "Notes" ("Title", "Text", "Category", "Author", "Time") VALUES (1$, 2$, 3$, 4$, CURRENT_TIMESTAMP)`, notes.Title, notes.Text, notes.Category, notes.Author)
+		_, e := conn.Exec(context.Background(),`INSERT INTO "Notes" ("Title", "Text", , "Author", "Time") VALUES (1$, 2$, 3$, 4$, CURRENT_TIMESTAMP)`, notes.Title, notes.Text, notes.Author)
 		if e != nil{
 			fmt.Println(e.Error())
 		}
@@ -50,21 +50,31 @@ import (
 	}
 
 
-	func GetNotes(notes *NotesType)([]NotesType, error){
-		row, e := conn.Query(context.Background(), `SELECT * FROM "notes"`)
+	func GetNotes()([]NotesType, error){
+		row, e := conn.Query(context.Background(), `SELECT * FROM notes`)
 		if e != nil{
-			return nil, e
+			panic(e.Error())
+			// return nil, e
 		} 
+		defer row.Close()
+
 		var note NotesType
 		var notesArr = make([]NotesType, 0)
+		
 		for row.Next(){
-			notesArr = append(notesArr, note)
-		}
-		e = row.Err()
-
+			e = row.Scan(&note.Title, &note.Text, &note.Author)
 			if e != nil {
 				return nil, e
 			}
+
+			notesArr = append(notesArr, note)
+		}
+
+		e = row.Err()
+
+		if e != nil {
+			return nil, e
+		}
 
 		return notesArr, nil
 	}
