@@ -1,125 +1,101 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
-	"context"
-	_"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5"
 	"github.com/joho/godotenv"
 )
-	var conn *pgx.Conn
 
-	func ConnectPostgres() error{
-		var err error
+var conn *pgx.Conn
 
-		if err = godotenv.Load(); err != nil {
-			fmt.Println((err.Error()))
-			return err
-		}
-		dbUrl, _ := os.LookupEnv("DATABASE_URL")
+func ConnectPostgres() error {
+	var err error
 
-		conn, err = pgx.Connect(context.Background(), dbUrl)
-		if err != nil {
-			return err
-		}
+	if err = godotenv.Load()
+	err != nil {
+		fmt.Println((err.Error()))
+		return err
+	}
+	dbUrl, _ := os.LookupEnv("DATABASE_URL")
 
-		err = conn.Ping(context.Background())
-		if err != nil{
-			fmt.Println(err.Error())
-		}
-
-		return nil
+	conn, err = pgx.Connect(context.Background(), dbUrl)
+	if err != nil {
+		return err
 	}
 
-	func Create(notes *NotesType) error{
-		_, e := conn.Exec(context.Background(),`INSERT INTO "Notes" ("Title", "Text", , "Author", "Time") VALUES (1$, 2$, 3$, 4$, CURRENT_TIMESTAMP)`, notes.Title, notes.Text, notes.Author)
-		if e != nil{
-			fmt.Println(e.Error())
-		}
-			return e	
+	err = conn.Ping(context.Background())
+	if err != nil {
+		fmt.Println(err.Error())
 	}
 
-	func Update(notes *NotesType) error{
-		_, e := conn.Exec(context.Background(),`UPDATE "Notes" SET Title = $1, Text = $2 WHERE id = $3`, notes.Title, notes.Text, notes.Id)
-		if e != nil{
-			fmt.Println(e.Error())
-		}
-		return e	
+	return err
+}
 
+func Create(notes *NotesType) error {
+	_, e := conn.Exec(context.Background(), `INSERT INTO Notes (title, text , author ) VALUES ($1, $2, $3)`, notes.Title, notes.Text, notes.Author)
+	if e != nil {
+		fmt.Println(e.Error())
+	}
+	return e
+}
+
+func Update(notes *NotesType) error {
+	_, e := conn.Exec(context.Background(), `UPDATE Notes SET Title = $1, Text = $2 WHERE id = $3`, notes.Title, notes.Text, &notes.Id)
+	if e != nil {
+		fmt.Println(e.Error())
+	}
+	return e
+
+}
+
+func GetNotes() ([]NotesType, error) {
+
+	row, e := conn.Query(context.Background(), `SELECT * FROM notes`)
+
+	if e != nil {
+		fmt.Println(e.Error())
+		return nil, e
 	}
 
+	defer row.Close()
 
-	func GetNotes()([]NotesType, error){
-		fmt.Println(1)
+	var note NotesType
+	var notesArr = make([]NotesType, 0)
 
-		row, e := conn.Query(context.Background(), `SELECT * FROM notes`)
-
-
-		if e != nil{
-
-			fmt.Println(e.Error())
-			return nil, e
-		} 
-		defer row.Close()
-
-		var note NotesType
-		var notesArr = make([]NotesType, 0)
-		
-		for row.Next(){
-			e = row.Scan(&note.Id,&note.Title, &note.Text, &note.Author, )
-			if e != nil {
-				return nil, e
-			}
-
-			notesArr = append(notesArr, note)
-		}
-
-		e = row.Err()
-
+	for row.Next() {
+		e = row.Scan(&note.Id, &note.Title, &note.Text, &note.Author)
 		if e != nil {
 			return nil, e
 		}
 
-		return notesArr, nil
-	}
-	
-
-	func Delete(notes *NotesType) error{
-		_, e := conn.Exec(context.Background(),`DELETE FROM "notes" WHERE id = $1`, notes.Id)
-		if e != nil{
-			fmt.Println(e.Error())
-		}
-		return e	
-
+		notesArr = append(notesArr, note)
 	}
 
+	e = row.Err()
 
+	if e != nil {
+		return nil, e
+	}
 
+	return notesArr, nil
+}
 
+func Delete(notes *NotesType) error {
+	_, e := conn.Exec(context.Background(), `DELETE FROM notes WHERE id = $1`, notes.Id)
+	if e != nil {
+		fmt.Println(e.Error())
+	}
+	return e
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 // func Connect(){
 // 	var e error
 
-// 	conn, e = sql.Open("postgres", `host=localhost 
-// 		port=5432 
+// 	conn, e = sql.Open("postgres", `host=localhost
+// 		port=5432
 // 		user=postgres
 // 		password=0000
 // 		dbname=WriteBook
