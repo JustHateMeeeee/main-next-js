@@ -9,16 +9,21 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>WriteBook</h1>
+    <div class="header">
+        <h1>WriteBook</h1>
+        <button class="btn create" onclick="openModal(false)">Создать</button>
+    </div>
+    
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
                 <form id="form">
-                    <input type="text" name="title" placeholder="Заголовок">
-                    <input type="text" name="text" placeholder="Текст">
+                    <input type="text" class="input" name="title" placeholder="Заголовок">
+                    <textarea name="text" class="input" placeholder="Введите текст" cols="30" rows="10"></textarea>
                 </form>
             </div>
         </div>
+        
         <div class="notesList" id="notesList"></div>
 </body>
 </html>

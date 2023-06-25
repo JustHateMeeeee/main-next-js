@@ -23,11 +23,34 @@ body{
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: bisque;
+
     margin: 10% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 80%; 
+}
+#form{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#form>input{
+    padding: 20px;
+    margin: 10px;
+    width: 400px;
+    border: 1px solid rgb(87, 87, 87);
+    border-radius: 5px;
+    background-color: rgb(255, 222, 182);
+
+}
+
+#form>textarea{
+    padding: 20px;
+    margin: 10px;
+    background-color: rgb(255, 222, 182);
+
 }
 
 .close {
@@ -43,17 +66,29 @@ body{
     text-decoration: none;
     cursor: pointer;
 }
+
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+}
+
 /* notes styles */
+
 .notesList{
     display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(400px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat( auto-fit, minmax(400px, 500px));
+    grid-column-gap: 18px;
+    grid-row-gap: 20px;
+    justify-content: center;
+    padding: 30px;
 }
 
 .note{
     width: 400px;
     height: 300px;
-    padding: 10px;
+    padding: 20px;
     background-color: #e5be01;
     display: flex;
     flex-direction: column;
@@ -68,16 +103,34 @@ body{
 .text {
     font-size: 18px;
 }
+
 .buttons{
     display: flex;
     justify-content: space-between;
 }
-.updateBtn, .deleteBtn{
+
+/* button styles  */
+.btn{
+    margin: 10px;
     width: fit-content;
-    padding: 5px;
+    padding: 10px;
     font-size: 18px;
     background: none;
     border: 1px solid black;
-    border-radius: 15px;
+    border-radius: 18px;
     cursor: pointer;
+}
+
+.update{
+    border: 1px solid rgb(17, 0, 255);
+    color: rgb(17, 0, 255);
+}
+.create{
+    border: 1px solid rgb(15, 131, 0);
+    color: rgb(15, 131, 0);
+}
+
+.delete{
+    border: 1px solid rgb(192, 0, 0);
+    color: rgb(192, 0, 0);
 }

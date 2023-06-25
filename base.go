@@ -10,6 +10,7 @@ import (
 
 var conn *pgx.Conn
 
+// connection
 func ConnectPostgres() error {
 	var err error
 
@@ -34,12 +35,13 @@ func ConnectPostgres() error {
 }
 
 func Create(notes *NotesType) error {
-	_, e := conn.Exec(context.Background(), `INSERT INTO Notes (title, text , author ) VALUES ($1, $2, $3)`, notes.Title, notes.Text, notes.Author)
+	_, e := conn.Exec(context.Background(), `INSERT INTO Notes (title, text ) VALUES ($1, $2, $3)`, notes.Title, notes.Text)
 	if e != nil {
 		fmt.Println(e.Error())
 	}
 	return e
 }
+
 
 func Update(notes *NotesType) error {
 	_, e := conn.Exec(context.Background(), `UPDATE Notes SET Title = $1, Text = $2 WHERE id = $3`, notes.Title, notes.Text, &notes.Id)
@@ -65,7 +67,7 @@ func GetNotes() ([]NotesType, error) {
 	var notesArr = make([]NotesType, 0)
 
 	for row.Next() {
-		e = row.Scan(&note.Id, &note.Title, &note.Text, &note.Author)
+		e = row.Scan(&note.Id, &note.Title, &note.Text)
 		if e != nil {
 			return nil, e
 		}
@@ -90,22 +92,3 @@ func Delete(notes *NotesType) error {
 	return e
 
 }
-
-// func Connect(){
-// 	var e error
-
-// 	conn, e = sql.Open("postgres", `host=localhost
-// 		port=5432
-// 		user=postgres
-// 		password=0000
-// 		dbname=WriteBook
-// 		sslmode=disable`)
-// 	if e != nil {
-// 		panic(e.Error())
-// 	}
-
-// 	e = conn.Ping()
-// 	if e != nil{
-// 		panic(e.Error())
-// 	}
-// }

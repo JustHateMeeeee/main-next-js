@@ -23,6 +23,5 @@ CREATE TABLE public.notes (
 	title varchar(30) NULL,
 	"text" varchar(300) NULL,
 	"time" date NULL,
-	author text NULL,
 	CONSTRAINT notes_pkey PRIMARY KEY (id)
 );

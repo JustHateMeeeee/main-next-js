@@ -15,8 +15,10 @@ func main() {
 	if e != nil{
 		fmt.Print(e.Error())
 	}
+	
 	router = gin.Default()
 
+	//config CORS 
 	router.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"POST", "GET", "PUT"},
@@ -24,6 +26,7 @@ func main() {
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 	}))
+
 	router.Static("assets", "./assets")
 	router.LoadHTMLGlob("html/*.html")
 	router.GET("/", func(context *gin.Context) {
@@ -88,6 +91,7 @@ func updateNote(context *gin.Context) {
 
 }
 
+// delete note
 func deleteNote(context *gin.Context) {
 	var note *NotesType
 
@@ -111,8 +115,7 @@ func deleteNote(context *gin.Context) {
 	return
 }
 
-// some problem
-
+// output all notes
 func getAllNotes(context *gin.Context) {
 	data, err := GetNotes()
 

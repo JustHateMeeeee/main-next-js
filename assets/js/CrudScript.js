@@ -4,6 +4,7 @@
         .then(response => response.json())
         .then(data =>{
             const noteList = document.getElementById('notesList')
+            // 
             if(data.data.length != 0){
                 data.data.forEach(element => {
 
@@ -18,21 +19,23 @@
                     text.className = "text"
                     text.textContent = element.text
 
+                    // button crud
                     const buttonUpdate = document.createElement('button')
-                    buttonUpdate.className = "updateBtn"
+                    buttonUpdate.className = "btn update"
                     buttonUpdate.textContent = "Изменить"
                     buttonUpdate.addEventListener("click", () => {
                         openModal(element.id)
-
                     })
 
+
                     const buttonDelete = document.createElement('button')
-                    buttonDelete.className = "deleteBtn"
+                    buttonDelete.className = "btn delete"
                     buttonDelete.textContent = "Удалить"
                     buttonDelete.addEventListener("click", () => {
                         deleteNote(element.id)
                         location.reload()
                     })
+                    
                     let buttons = document.createElement('div')
                     buttons.className = "buttons"
                     buttons.append(buttonUpdate, buttonDelete)
@@ -97,10 +100,10 @@
 
 
     // crud function create
-    const createNote = (title, text, author) => {
+    const createNote = (title, text) => {
         fetch('http://127.0.0.1:8080/createNote', {
         method: 'post',
-        body: JSON.stringify({title: title, text: text, author: author}),
+        body: JSON.stringify({title: title, text: text}),
         headers: {
             'content-type': 'application/json'
         }
@@ -117,34 +120,44 @@
 
 
     // get form data
-    const setUpdate = (id) =>{
+    const setReqest = (id) =>{
         const form = document.getElementById('form')
         const formData = new FormData(form)
         const text = formData.get('text')
         const title = formData.get('title')
-        updateNote(id, title, text)
+        id ? updateNote(id, title, text) : createNote(title, text)
     }
 
 
+    function setUpdateButton(){
+        
+    }
 
-    
     // open modal window
     function openModal(id) {
         const modal =  document.getElementById("myModal")
-
         const form = document.getElementById('form')
 
         const button = document.createElement('button')
-        button.textContent = "Изменить"
+        button.className = "btn"
+        button.textContent = "Отправить"
         button.addEventListener("click", ()=>{
-            setUpdate(id)
+            setReqest(id)
         })
 
         form.append(button)
+    
         modal.style.display = "block";
     }
+
+
+
     // close modal window
     function closeModal() {
+        const form = document.getElementById('form')
+        const button = form.querySelector("button")
+        console.log(button)
+        button.remove()
         document.getElementById("myModal").style.display = "none";
     }
 
