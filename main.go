@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-	// "github.com/gin-contrib/cors"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,13 +17,13 @@ func main() {
 	}
 	router = gin.Default()
 
-	// router.Use(cors.New(cors.Config{
-	// 	AllowOrigins:     []string{"*"},
-	// 	AllowMethods:     []string{"POST", "GET", "PATCH"},
-	// 	AllowHeaders:     []string{"Origin"},
-	// 	ExposeHeaders:    []string{"Content-Length"},
-	// 	AllowCredentials: true,
-	// }))
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"POST", "GET", "PUT"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}))
 	router.Static("assets", "./assets")
 	router.LoadHTMLGlob("html/*.html")
 	router.GET("/", func(context *gin.Context) {
@@ -31,7 +31,7 @@ func main() {
 	})
 
 	router.POST("/createNote", createNote)
-	router.PATCH("/updateNote", updateNote)
+	router.PUT("/updateNote", updateNote)
 	router.DELETE("/deleteNote", deleteNote)
 	router.GET("/getAllNotes", getAllNotes)
 
