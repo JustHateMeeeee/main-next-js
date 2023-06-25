@@ -129,10 +129,7 @@
     }
 
 
-    function setUpdateButton(){
-        
-    }
-
+    
     // open modal window
     function openModal(id) {
         const modal =  document.getElementById("myModal")
@@ -160,25 +157,5 @@
         button.remove()
         document.getElementById("myModal").style.display = "none";
     }
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 
     getAllNotes()

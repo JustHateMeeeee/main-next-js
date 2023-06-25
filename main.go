@@ -15,10 +15,9 @@ func main() {
 	if e != nil{
 		fmt.Print(e.Error())
 	}
-	
 	router = gin.Default()
 
-	//config CORS 
+	//config cors 
 	router.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"POST", "GET", "PUT"},
